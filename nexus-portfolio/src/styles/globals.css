@@ -1,0 +1,133 @@
+/* Global variables & reset */
+:root {
+  --neon-cyan: #00d4ff;
+  --neon-purple: #9d4edd;
+  --neon-pink: #ff00ff;
+  --neon-amber: #feca57;
+  --neon-red: #ff6b6b;
+  --neon-green: #2ecc71;
+  --bg-dark: #000005;
+  --bg-panel: rgba(5, 5, 20, 0.9);
+  --glass-border: rgba(0, 212, 255, 0.3);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-dark);
+  color: white;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+a:hover {
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* Utility: selection */
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 212, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.5);
+}
+
+/* Focus styles */
+*:focus {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 2px;
+}
+
+/* Hide focus for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Smooth scrolling for anchor */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Disable tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Planet label from 3D scene */
+.planet-label {
+  background: rgba(0, 0, 0, 0.85) !important;
+  border: 1px solid var(--neon-cyan) !important;
+  border-radius: 6px;
+  padding: 12px 24px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px var(--neon-cyan);
+  text-align: center;
+  animation: glow-pulse 2s ease-in-out infinite;
+  font-family: 'Courier New', monospace;
+}
+
+.planet-label .planet-name {
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px var(--neon-cyan);
+  margin-bottom: 4px;
+}
+
+.planet-label .planet-category {
+  font-size: 11px;
+  color: var(--neon-cyan);
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px var(--neon-cyan); }
+  50% { box-shadow: 0 0 40px var(--neon-cyan), 0 0 60px var(--neon-cyan); }
+}

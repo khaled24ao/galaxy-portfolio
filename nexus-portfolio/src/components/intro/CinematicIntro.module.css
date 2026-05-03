@@ -1,0 +1,736 @@
+/* Cinematic Intro Styles */
+.cinematic-intro-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+  z-index: 9999;
+}
+
+.intro-3d-scene {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Loading overlay */
+.intro-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 100;
+}
+
+.loading-content {
+  text-align: center;
+  color: #00ffff;
+  font-family: 'Courier New', monospace;
+}
+
+.loading-ring {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border: 3px solid transparent;
+  border-top: 3px solid #00ffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 30px #00ffff44;
+}
+
+.loading-content p {
+  font-size: 18px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px #00ffff;
+}
+
+.loading-content span {
+  font-size: 12px;
+  opacity: 0.6;
+  letter-spacing: 2px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Countdown overlay */
+.countdown-overlay {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.countdown-number {
+  font-size: 120px;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 
+    0 0 40px #ff4400,
+    0 0 80px #ff0000,
+    0 0 120px #ff4400;
+  animation: countdown-pulse 1s ease-in-out infinite;
+  line-height: 1;
+  font-family: 'Arial Black', sans-serif;
+}
+
+.countdown-overlay p {
+  color: #ff6600;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  text-shadow: 0 0 20px #ff4400;
+}
+
+@keyframes countdown-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Audio status indicator (debug only) */
+.audio-status {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 10px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid #00ff0033;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+/* Glitch overlay for transition */
+.glitch-overlay-global {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9998;
+  animation: glitch-transition 0.8s ease-in-out forwards;
+  pointer-events: none;
+}
+
+@keyframes glitch-transition {
+  0% {
+    opacity: 0;
+    background: transparent;
+  }
+  10% {
+    opacity: 1;
+    background: #ffffff;
+  }
+  20% {
+    background: #ff0000;
+    transform: translateX(-10px);
+  }
+  30% {
+    background: #00ff00;
+    transform: translateX(10px);
+  }
+  40% {
+    background: #0000ff;
+    transform: translateX(-5px);
+  }
+  50% {
+    background: #ffffff;
+    transform: translateX(5px);
+  }
+  60% {
+    background: #ff00ff;
+    transform: translateX(-2px);
+  }
+  70% {
+    background: #00ffff;
+    transform: translateX(2px);
+  }
+  80% {
+    background: #ffff00;
+    transform: translateX(-1px);
+  }
+  90% {
+    background: #ff8800;
+    transform: translateX(1px);
+  }
+  100% {
+    opacity: 0;
+    background: #000;
+    transform: none;
+  }
+}
+
+/* Text glitch effect for hologram */
+.glitch-text {
+  position: relative;
+  color: #00ffff;
+  text-shadow: 
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 30px #00ffff;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -2px 0 #ff00ff;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -2px 0 #00ff00;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(31px, 9999px, 94px, 0); }
+  20% { clip: rect(62px, 9999px, 36px, 0); }
+  40% { clip: rect(14px, 9999px, 98px, 0); }
+  60% { clip: rect(85px, 9999px, 20px, 0); }
+  80% { clip: rect(39px, 9999px, 73px, 0); }
+  100% { clip: rect(56px, 9999px, 18px, 0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(65px, 9999px, 12px, 0); }
+  20% { clip: rect(28px, 9999px, 87px, 0); }
+  40% { clip: rect(91px, 9999px, 45px, 0); }
+  60% { clip: rect(17px, 9999px, 76px, 0); }
+  80% { clip: rect(53px, 9999px, 29px, 0); }
+  100% { clip: rect(74px, 9999px, 62px, 0); }
+}
+
+/* Vignette effect */
+.vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Scanlines effect */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 255, 255, 0.03) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 51;
+  animation: scanline-move 10s linear infinite;
+}
+
+@keyframes scanline-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+/* Boot indicator */
+.boot-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #00ffff;
+  font-family: 'Courier New', monospace;
+  z-index: 60;
+}
+
+.boot-dot {
+  width: 12px;
+  height: 12px;
+  background: #00ffff;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  animation: blink 0.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Hologram text styling */
+.hologram-text-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 70;
+  text-align: center;
+}
+
+.hologram-main-text {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: #00ffff;
+  text-shadow: 
+    0 0 20px #00ffff,
+    0 0 40px #00ffff,
+    0 0 60px #00ffff;
+  animation: hologram-flicker 3s ease-in-out infinite;
+}
+
+@keyframes hologram-flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.8; }
+  94% { opacity: 1; }
+  95% { opacity: 0.9; }
+  96% { opacity: 1; }
+}
+
+/* New Enhanced Cinematic styles */
+.introFullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000000;
+  z-index: 9999;
+}
+
+.scene3D {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Boot screen */
+.bootScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #0a0a1a 0%, #000000 100%);
+  z-index: 10;
+}
+
+.bootContent {
+  text-align: center;
+  color: #00ffff;
+}
+
+.bootRing {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressRing {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    #00ffff calc(var(--progress) * 1deg),
+    rgba(0, 255, 255, 0.1) 0deg
+  );
+  animation: spin 3s linear infinite;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+}
+
+.bootRing::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background: #000;
+  border-radius: 50%;
+}
+
+.bootText {
+  font-size: 24px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-shadow: 0 0 30px #00ffff;
+  font-weight: bold;
+}
+
+.bootSubtext {
+  font-size: 12px;
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+
+.clickHint {
+  display: block;
+  margin-top: 20px;
+  font-size: 10px;
+  opacity: 0.5;
+  letter-spacing: 1px;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+/* HUD Overlay for hologram phase */
+.hudOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.cornerDecor {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 80px;
+  height: 80px;
+  border-left: 2px solid rgba(0, 255, 255, 0.6);
+  border-top: 2px solid rgba(0, 255, 255, 0.6);
+}
+
+.cornerDecor::after {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 80px;
+  height: 80px;
+  border-right: 2px solid rgba(0, 255, 255, 0.6);
+  border-bottom: 2px solid rgba(0, 255, 255, 0.6);
+}
+
+/* Countdown display */
+.countdownDisplay {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.countdownNumber {
+  display: block;
+  font-size: 100px;
+  font-weight: 900;
+  color: #ff4400;
+  text-shadow: 
+    0 0 40px #ff4400,
+    0 0 80px #ff0000,
+    0 0 120px #ff4400;
+  line-height: 1;
+  font-family: 'Arial Black', sans-serif;
+  animation: countdown-pulse 1s ease-in-out infinite;
+}
+
+.countdownLabel {
+  font-size: 12px;
+  color: #ff6600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  text-shadow: 0 0 20px #ff4400;
+}
+
+/* Explosion overlay */
+.explosionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.warningText {
+  font-size: 32px;
+  color: #ff4400;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  text-shadow: 0 0 50px #ff4400;
+  animation: warning-flash 0.1s infinite;
+  font-weight: bold;
+}
+
+@keyframes warning-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Zoom effect */
+.zooming .scene3D {
+  animation: zoom-climb 6s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+@keyframes zoom-climb {
+  0% {
+    transform: scale(1);
+    filter: brightness(0.2);
+  }
+  20% {
+    transform: scale(5);
+    filter: brightness(5);
+  }
+  100% {
+    transform: scale(10);
+    filter: brightness(2);
+  }
+}
+
+/* Debug info */
+.debugInfo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 11px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #00ff0033;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+/* Scanlines (duplicate for enhanced intro) */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 255, 255, 0.02) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 6;
+  animation: scanline-move 8s linear infinite;
+}
+
+/* Boot ring styling */
+.bootRing {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressRing {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    #00ffff calc(var(--progress) * 1deg),
+    rgba(0, 255, 255, 0.1) 0deg
+  );
+  animation: spin 3s linear infinite;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+}
+
+.bootRing::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background: #000;
+  border-radius: 50%;
+}
+
+/* HUD overlay corner decoration */
+.hudOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.cornerDecor {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 80px;
+  height: 80px;
+  border-left: 2px solid rgba(0, 255, 255, 0.6);
+  border-top: 2px solid rgba(0, 255, 255, 0.6);
+}
+
+.cornerDecor::after {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 80px;
+  height: 80px;
+  border-right: 2px solid rgba(0, 255, 255, 0.6);
+  border-bottom: 2px solid rgba(0, 255, 255, 0.6);
+}
+
+/* Countdown display */
+.countdownDisplay {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.countdownNumber {
+  display: block;
+  font-size: 100px;
+  font-weight: 900;
+  color: #ff4400;
+  text-shadow: 
+    0 0 40px #ff4400,
+    0 0 80px #ff0000,
+    0 0 120px #ff4400;
+  line-height: 1;
+  font-family: 'Arial Black', sans-serif;
+  animation: countdown-pulse 1s ease-in-out infinite;
+}
+
+.countdownLabel {
+  font-size: 12px;
+  color: #ff6600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  text-shadow: 0 0 20px #ff4400;
+}
+
+/* Explosion warning */
+.explosionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.warningText {
+  font-size: 32px;
+  color: #ff4400;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  text-shadow: 0 0 50px #ff4400;
+  animation: warning-flash 0.1s infinite;
+  font-weight: bold;
+}
+
+/* Zoom animation */
+.zooming .scene3D {
+  animation: zoom-climb 6s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+@keyframes zoom-climb {
+  0% {
+    transform: scale(1);
+    filter: brightness(0.3);
+  }
+  20% {
+    transform: scale(5);
+    filter: brightness(5);
+  }
+  100% {
+    transform: scale(10);
+    filter: brightness(2);
+  }
+}
+
+/* Debug info */
+.debugInfo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 11px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #00ff0033;
+  z-index: 99999;
+  pointer-events: none;
+}

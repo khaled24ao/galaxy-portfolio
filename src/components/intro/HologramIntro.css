@@ -1,0 +1,118 @@
+.hologram-intro-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.hologram-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: hologramFlickerIn 2s forwards;
+}
+
+.hologram-image {
+  width: 300px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #00f2ff) drop-shadow(0 0 30px rgba(0, 242, 255, 0.5));
+  opacity: 0.8;
+  animation: hologramFloat 4s ease-in-out infinite, hologramGlitch 3s infinite;
+  mix-blend-mode: screen;
+}
+
+.hologram-text {
+  margin-top: 30px;
+  color: #00f2ff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
+  animation: textFlicker 0.1s infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #00f2ff;
+  width: 0;
+}
+
+.hologram-text.typing {
+  animation: typing 2s steps(40, end) forwards, blink-caret 0.75s step-end infinite, textFlicker 3s infinite alternate;
+}
+
+.scanlines-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.2)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 101;
+  opacity: 0.3;
+}
+
+@keyframes hologramFlickerIn {
+  0% { opacity: 0; transform: scale(0.9); filter: brightness(0); }
+  10% { opacity: 1; filter: brightness(2); }
+  20% { opacity: 0; }
+  30% { opacity: 1; filter: brightness(1.5); }
+  40% { opacity: 0; }
+  50% { opacity: 1; transform: scale(1); filter: brightness(1); }
+  100% { opacity: 1; }
+}
+
+@keyframes hologramFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes hologramGlitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes textFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; text-shadow: 0 0 10px #00f2ff; }
+  20%, 24%, 55% { opacity: 0.5; text-shadow: none; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #00f2ff; }
+}
+
+.fade-out {
+  animation: fadeOut 1.5s forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
